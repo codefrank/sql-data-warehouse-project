@@ -15,6 +15,8 @@
 	
 */
 
+IF OBJECT_ID('gold.dim_customers', 'U') IS NOT NULL
+	DROP VIEW gold.dim_customers
 
 CREATE VIEW gold.dim_customers AS
 SELECT
@@ -39,6 +41,8 @@ ON ci.cst_key = la.cid
 
 
 
+IF OBJECT_ID('gold.dim_products', 'U') IS NOT NULL
+	DROP VIEW gold.dim_products
 
 CREATE VIEW gold.dim_products AS
 SELECT
@@ -61,7 +65,9 @@ WHERE pn.prd_end_dt IS NULL  -- Filters out all historical data
 
 
 
-
+IF OBJECT_ID('gold.fact_sales', 'U') IS NOT NULL
+	DROP VIEW gold.fact_sales
+	
 CREATE VIEW gold.fact_sales AS 
 SELECT
 	sd.sls_ord_num AS order_number,
